@@ -1,7 +1,7 @@
 # Series
 Contiene el código generado para extraer, corregir y generar series a partir de diversas bases de datos hidrometeorológicos:
 * [AEMET](https://github.com/navass11/Series/tree/master/ipynb/AEMET) para los datos de la Agencia Estatal de Meteorología.
-* [Cambio-Climatico](https://github.com/navass11/Series/tree/master/ipynb/Cambio-Climatico) contiene las funciones y ejemplos para la descarga de datos de GCMs (Global Circulation Models) de dos servidores de la NASA: _datashare_ o _THREDDS_. Además se incluyen las funciones para descargar y extaer los datos CORDEX, CMIP% y CMIP6 (https://esgf-data.dkrz.de/projects/esgf-dkrz/) junto con las funciones específicas para trabajar desde G con la malla EUR-11. 
+* [Cambio-Climatico](https://github.com/navass11/Series/tree/master/ipynb/Cambio-Climatico) contiene las funciones y ejemplos para la descarga de datos de GCMs (Global Circulation Models) de dos servidores de la NASA: _datashare_ o _THREDDS_. Además se incluyen las funciones para descargar y extaer los datos CORDEX, CMIP5 y CMIP6 (https://esgf-data.dkrz.de/projects/esgf-dkrz/) junto con las funciones específicas para trabajar desde G con la malla EUR-11. 
 * [CHC_SAIH](https://github.com/navass11/Series/tree/master/ipynb/CHC_SAIH) para los datos del Sistema Automático de Información Hidrológica de la Confederación Hidrográfica del Cantábrico.
 * [COPERNICUS](https://github.com/navass11/Series/tree/master/ipynb/COPERNICUS). Funciones y ejemplo para la descarga de datos de Copernicus.
 * [ROEA](https://github.com/navass11/Series/tree/master/ipynb/ROEA) para la Red Oficial de Estaciones de Aforo.
