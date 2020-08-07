@@ -34,6 +34,7 @@ def download_ESGF_data(Open_ID, password, server, project, experiment,time_frequ
     Ficheros netcdf para cada uno de los escenarios y modelos solicitados
     
     """
+    print(os.path.dirname(sys.argv[0]))
     os.chdir(os.path.dirname(sys.argv[0]))
     conn = SearchConnection('https://esgf-data.dkrz.de/esg-search', distrib=True)
     lm = LogonManager()
