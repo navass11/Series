@@ -10,6 +10,7 @@ import tqdm
 import numpy as np
 from netCDF4 import Dataset
 from math import *
+import sys
 
 def download_ESGF_data(Open_ID, password, server, project, experiment,time_frequency, variable, domain, path_output):
     """Esta función nos permite descargar masivamente mediante WGET los diferentes ficheros netcdf que contienen los servidrores de ESGF sobre cambio climático.
@@ -33,6 +34,7 @@ def download_ESGF_data(Open_ID, password, server, project, experiment,time_frequ
     Ficheros netcdf para cada uno de los escenarios y modelos solicitados
     
     """
+    os.chdir(os.path.dirname(sys.argv[0]))
     conn = SearchConnection('https://esgf-data.dkrz.de/esg-search', distrib=True)
     lm = LogonManager()
     lm.logoff()
@@ -62,7 +64,7 @@ def download_ESGF_data(Open_ID, password, server, project, experiment,time_frequ
         files_list=list()
         result = ctx.search()[ct]
         lines[22]="openId='"+Open_ID+"'\n"
-        lines[23]="earch_url=https://esgf-data.dkrz.de/esg-search/wget/?distrib=false&dataset_id='"+result.dataset_id+"'\n"
+        lines[23]="earch_url=https://esgf-data.dkrz.de/esg-search/wget/?distrib=false&dataset_id="+result.dataset_id+"'\n"
         lines_first=lines[:27]
         lines_end=lines[28:]
 
