@@ -17,6 +17,6 @@ setup(name='ESFG',
           'esgf-pyclient',
           'xarray',
           'tqdm',
-          'netCDF4'
+          'netCDF4',
       ]
      )
