@@ -1,3 +1,7 @@
 numpy
 pandas
 scipy
+esgf-pyclient
+xarray
+tqdm
+netCDF4

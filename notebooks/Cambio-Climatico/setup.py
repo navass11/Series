@@ -13,6 +13,10 @@ setup(name='ESFG',
       install_requires=[
           'numpy',
           'pandas',
-          'scipy'
+          'scipy',
+          'esgf-pyclient',
+          'xarray',
+          'tqdm',
+          'netCDF4'
       ]
      )

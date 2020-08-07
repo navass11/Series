@@ -56,33 +56,41 @@ def download_ESGF_data(Open_ID, password, server, project, experiment,time_frequ
     with open('wget-plantilla-ESGF.sh', "r+") as out_file:
         lines = out_file.readlines()
         
-    lines_first=lines[:27]
-    lines_end=lines[28:]
+    
     
     for ct in tqdm.tqdm(range(ctx.hit_count)):
         files_list=list()
         result = ctx.search()[ct]
+        lines[22]='openId='+Open_ID+'\n'
         lines[23]="earch_url=https://esgf-data.dkrz.de/esg-search/wget/?distrib=false&dataset_id="+result.dataset_id+'\n'
+        lines_first=lines[:27]
+        lines_end=lines[28:]
 
         files = result.file_context().search()
         ntcf_ds=list()
         ntcf_name=list()
         for file in files:
-            if variable in file.opendap_url:
-                files_list.append("'"+file.filename+"'"+' '+"'"+file.download_url+"'"+' '+"'"+file.checksum_type+"'"+' '+"'"+file.checksum+"'"+'\n')
-        with open(path_output+"Download.sh", "w") as fh:
-            for line in (lines_first+files_list+lines_end):
-                fh.write(line)
-                
-        conn = SearchConnection('https://esgf-data.dkrz.de/esg-search', distrib=True)
-        lm = LogonManager()
-        lm.logoff()
-        lm.is_logged_on()
+            try:
+                if variable in file.opendap_url:
+                    files_list.append("'"+file.filename+"'"+' '+"'"+file.download_url+"'"+' '+"'"+file.checksum_type+"'"+' '+"'"+file.checksum+"'"+'\n')
+            except:
+                continue
+        if len(files_list)==0:
+            continue
+        else:
+            with open(path_output+"Download.sh", "w") as fh:
+                for line in (lines_first+files_list+lines_end):
+                    fh.write(line)
+                    
+            conn = SearchConnection('https://esgf-data.dkrz.de/esg-search', distrib=True)
+            lm = LogonManager()
+            lm.logoff()
+            lm.is_logged_on()
 
-        lm.logon_with_openid(Open_ID, password)
-        lm.is_logged_on()
-        os.chdir(path_output)
-        os.system('bash '+'Download.sh'+' H '+Open_ID+' '+ password)   
+            lm.logon_with_openid(Open_ID, password)
+            lm.is_logged_on()
+            os.chdir(path_output)
+            os.system('bash '+'Download.sh'+' H '+Open_ID+' '+ password)   
         
         
 
