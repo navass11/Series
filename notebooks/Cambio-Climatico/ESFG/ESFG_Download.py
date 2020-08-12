@@ -67,7 +67,7 @@ def download_ESGF_data(Open_ID, password, server, project, experiment,time_frequ
         files_list=list()
         result = ctx.search()[ct]
         lines[22]="openId='"+Open_ID+"'\n"
-        lines[23]="'earch_url=https://"+server+"/esg-search/wget/?distrib=false&dataset_id="+result.dataset_id+"'\n"
+        lines[23]="search_url='https://"+server+"/esg-search/wget/?distrib=false&dataset_id="+result.dataset_id+"'\n"
         lines_first=lines[:27]
         lines_end=lines[28:]
 
@@ -87,15 +87,14 @@ def download_ESGF_data(Open_ID, password, server, project, experiment,time_frequ
                 for line in (lines_first+files_list+lines_end):
                     fh.write(line)
                     
-            conn = SearchConnection('https://esgf-data.dkrz.de/esg-search', distrib=True)
+            conn = SearchConnection('https://'+server+'/esg-search', distrib=True)
             lm = LogonManager()
             lm.logoff()
             lm.is_logged_on()
 
             lm.logon_with_openid(Open_ID, password)
             lm.is_logged_on()
-            os.chdir(path_output)
-            os.system('bash '+'Download.sh'+' H '+Open_ID+' '+ password)   
+            os.system('bash '+path_output+'Download.sh'+' H '+Open_ID+' '+ password)   
         
         
 
