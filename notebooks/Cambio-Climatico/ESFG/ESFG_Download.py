@@ -38,7 +38,7 @@ def download_ESGF_data(Open_ID, password, server, project, experiment,time_frequ
     
     """
     print(os.getcwd())
-    conn = SearchConnection('https://esgf-data.dkrz.de/esg-search', distrib=True)
+    conn = SearchConnection('https://'+server+'/esg-search', distrib=True)
     lm = LogonManager()
     lm.logoff()
     lm.is_logged_on()
@@ -67,7 +67,7 @@ def download_ESGF_data(Open_ID, password, server, project, experiment,time_frequ
         files_list=list()
         result = ctx.search()[ct]
         lines[22]="openId='"+Open_ID+"'\n"
-        lines[23]="'earch_url=https://esgf-data.dkrz.de/esg-search/wget/?distrib=false&dataset_id="+result.dataset_id+"'\n"
+        lines[23]="'earch_url=https://"+server+"/esg-search/wget/?distrib=false&dataset_id="+result.dataset_id+"'\n"
         lines_first=lines[:27]
         lines_end=lines[28:]
 
