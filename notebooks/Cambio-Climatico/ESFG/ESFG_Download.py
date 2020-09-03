@@ -37,12 +37,14 @@ def download_ESGF_data(Open_ID, password, server, project, experiment,time_frequ
     Ficheros netcdf para cada uno de los escenarios y modelos solicitados
     
     """
-    print(os.getcwd())
+    dir_file=__file__
+    os.chdir(dir_file[:-16])
+    print(dir_file)
     conn = SearchConnection('https://'+server+'/esg-search', distrib=True)
     lm = LogonManager()
     lm.logoff()
     lm.is_logged_on()
-    lm.logon_with_openid(Open_ID, password)
+    lm.logon_with_openid(Open_ID, password, bootstrap=True)
     lm.is_logged_on()
     if project=='CORDEX':
         ctx = conn.new_context(
@@ -94,6 +96,7 @@ def download_ESGF_data(Open_ID, password, server, project, experiment,time_frequ
 
             lm.logon_with_openid(Open_ID, password)
             lm.is_logged_on()
+            os.chdir(path_output)
             os.system('bash '+path_output+'Download.sh'+' H '+Open_ID+' '+ password)   
         
         
